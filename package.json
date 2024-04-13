@@ -1,0 +1,36 @@
+{
+  "name": "arindam-auto-password",
+  "version": "1.0.0",
+  "description": "A library to generate strong password automatically",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-arindam-roy/npm-console-color"
+  },
+  "keywords": [
+    "devarindam",
+    "arindam roy",
+    "auto password",
+    "strong password",
+    "auto password generate",
+    "auto password generator",
+    "strong password generator",
+    "auto strong password generator"
+  ],
+  "author": "Arindam Roy <arindam.roy.developer@gmail.com> (https://github.com/dev-arindam-roy)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dev-arindam-roy/npm-console-color/issues"
+  },
+  "homepage": "https://github.com/dev-arindam-roy/npm-console-color#readme",
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
+}
