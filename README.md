@@ -6,9 +6,11 @@
 
 ```js
 npm i arindam-auto-password
+```
 
-or 
+> **or** 
 
+```js
 npm install arindam-auto-password
 ```
 
@@ -17,45 +19,38 @@ npm install arindam-auto-password
 > In Node Js
 
 ```js
-const helpers = require('arindam-awesome-helpers');
+const generatePassword = require('arindam-auto-password');
 
-console.log(helpers.AwesomeHelpers.randomCode1());
-
-console.log(helpers.AwesomeHelpers.randomStr1());
-
-console.log(helpers.AwesomeHelpers.randomStr1(30));
-
-console.log(helpers.AwesomeHelpers.randomToken2());
-
-console.log(helpers.AwesomeHelpers.getFormat2('2024-06-12'));
-
-console.log(helpers.AwesomeHelpers.isDateValid('03/12/2022'));
+console.log(generatePassword.ArindamAutoPassword.strongPassword());
+console.log(generatePassword.ArindamAutoPassword.strongPassword(12));
+console.log(generatePassword.ArindamAutoPassword.strongPassword(16));
+console.log(generatePassword.ArindamAutoPassword.strongPassword(20));
 ```
 
 > In React, Vue, Angular & others..
 
 ```js
-import { AwesomeHelpers } from './arindam-awesome-helpers'
+import { ArindamAutoPassword } from './arindam-auto-password'
 
-console.log(AwesomeHelpers.randomCode1());
-
-console.log(AwesomeHelpers.randomStr1());
-
-console.log(AwesomeHelpers.randomStr1(30));
-
-console.log(AwesomeHelpers.randomToken2());
-
-console.log(AwesomeHelpers.getFormat2('2024-06-12'));
-
-console.log(AwesomeHelpers.isDateValid('03/12/2022'));
+console.log(ArindamAutoPassword.strongPassword());
+console.log(ArindamAutoPassword.strongPassword(12));
+console.log(ArindamAutoPassword.strongPassword(16));
+console.log(ArindamAutoPassword.strongPassword(20));
+```
+## Random example output password
+```
+U8d5wGi!
+rKkf4Zon5Lh+
+n3wW):d}S?!24X8Z
+]/LHFf8doI=_996c)i{-
 ```
 
-## Awesome Functions
+## Auto Strong Password
 
 ```js
 export class ArindamAutoPassword {
 
-    passwordRules = (): any[] => {
+    static passwordRules = (): any[] => {
         let rules = [
             { chars: "abcdefghijklmnopqrstuvwxyz", min: 3 },
             { chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", min: 2 },
@@ -65,8 +60,9 @@ export class ArindamAutoPassword {
         return rules;
     }
 
-    generatePassword = (length: number = 8): string => {
+    static strongPassword = (length: number = 8): string => {
 
+        let _this = this;
         const rules = this.passwordRules();
         let allChars = '', allMin = 0;
 
@@ -81,7 +77,6 @@ export class ArindamAutoPassword {
         rules.push({ chars: allChars, min: length - allMin });
 
         let pswd = '';
-        let _this = this;
         rules.forEach((rule: any): void => {
             if (rule.min > 0) {
                 pswd += _this.shuffleString(rule.chars, rule.min);
@@ -91,7 +86,7 @@ export class ArindamAutoPassword {
         return this.shuffleString(pswd);
     }
 
-    shuffleString = (str: string, maxlength: number = 0): string => {
+    static shuffleString = (str: string, maxlength: number = 0): string => {
 
         let shuffledString = str.split('').sort(() => {
             return 0.5 - Math.random()

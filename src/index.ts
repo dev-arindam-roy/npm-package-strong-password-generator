@@ -1,6 +1,6 @@
 export class ArindamAutoPassword {
 
-    passwordRules = (): any[] => {
+    static passwordRules = (): any[] => {
         let rules = [
             { chars: "abcdefghijklmnopqrstuvwxyz", min: 3 },
             { chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", min: 2 },
@@ -10,8 +10,9 @@ export class ArindamAutoPassword {
         return rules;
     }
 
-    generatePassword = (length: number = 8): string => {
+    static strongPassword = (length: number = 8): string => {
 
+        let _this = this;
         const rules = this.passwordRules();
         let allChars = '', allMin = 0;
 
@@ -26,7 +27,6 @@ export class ArindamAutoPassword {
         rules.push({ chars: allChars, min: length - allMin });
 
         let pswd = '';
-        let _this = this;
         rules.forEach((rule: any): void => {
             if (rule.min > 0) {
                 pswd += _this.shuffleString(rule.chars, rule.min);
@@ -36,7 +36,7 @@ export class ArindamAutoPassword {
         return this.shuffleString(pswd);
     }
 
-    shuffleString = (str: string, maxlength: number = 0): string => {
+    static shuffleString = (str: string, maxlength: number = 0): string => {
 
         let shuffledString = str.split('').sort(() => {
             return 0.5 - Math.random()
